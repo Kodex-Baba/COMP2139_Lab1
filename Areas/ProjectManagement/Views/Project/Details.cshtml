@@ -1,0 +1,59 @@
+﻿@model Project;
+@{
+    ViewData["Title"] = "Project Details";
+}
+
+<h2>Project Details </h2>
+
+<div class="card">
+
+    <div class="card-body">
+        <h3 class="card-title">@Html.DisplayFor(model => model.Name)</h3>
+
+            <p class="card-text">@Html.DisplayFor(model => model.Description)</p>
+
+            <dl class="row">
+                <dt class="col-sm-3">Project ID</dt>
+                <dd class="col-sm-9">@Model.projectID</dd>
+
+                <dt class="col-sm-3">Start Date</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.StartDate)</dd>
+            
+                <dt class="col-sm-3">End Date</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.EndDate)</dd>
+
+                <dt class="col-sm-3">Status</dt>
+                <dd class="col-sm-9">@Model.Status</dd>
+
+            </dl>
+            <a asp-controller="Project" asp-action="Edit" asp-route-id="@Model.projectID" class="btn btn-primary">Edit</a>
+            <a asp-controller="Project" asp-action="Index"  class="btn btn-danger">Cancel</a>
+        
+
+    </div>
+   
+</div>
+
+<div id="projectComments">
+    <h3 class="mt-2">Comments</h3>
+    <div id="commentsList" class="comments-container">
+        <!--Comments will be loaded here-->
+        <form id="addCommentForm" class="mt-3">
+            <input type="hidden" name="projectID" value="Model.projectID" />
+            <div class="form-group">
+                <textarea name="Content" class="form-control" placeholder="Add a comment"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success mt-3">Add Comment</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/projectComments.js"></script>
+    <script>
+        $(document).ready(function () {
+            var projectID = $('#projectComments input[name="projectID"]').val();
+            loadComment(projectID);
+        });
+    </script>
+}

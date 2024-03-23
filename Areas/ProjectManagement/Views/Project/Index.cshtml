@@ -1,0 +1,68 @@
+﻿<link rel="stylesheet" href="~/css/DefaultStyleTemplate.css" />
+@model List<Project>
+
+@{
+    // razor block
+    ViewData["Title"] = "Projects";
+    bool searchPerformed = ViewData["SearchPerformed"] as bool? ?? false;
+    string searchString = ViewData["SearchString"] as string;
+
+}
+
+<h2>Projects</h2> <br />
+
+<a asp-action="Create" class="btn btn-primary" id="createButton">Create New Project</a>
+<br />
+@if(Model.Any())
+{
+ <table class="table">
+     <thead>
+         <tr>
+             <th><i class="fa-solid fa-fingerprint"></i></th>
+             <th><i class="fa-solid fa-id-card"></i> Name</th>
+             <th><i class="fa-solid fa-hippo"></i> Description</th>
+             <th><i class="fa-solid fa-clipboard-list"></i> Summary</th>
+             <th><i class="fa-solid fa-circle-radiation"></i> Action</th> <!-- Column for action buttons Details, Edit, Delete-->
+         </tr>
+     </thead>
+
+        <tbody>
+            @foreach(var project in Model)
+            {
+                <tr>
+                    <td>@project.projectID</td>
+                    <td>@project.Name</td>
+                    <td>@project.Description</td>
+
+                    <!-- Inject ViewComponent-->
+                    <td>
+                        @await Component.InvokeAsync("ProjectSummary", new {projectId = project.projectID})
+                    </td>
+
+
+                    <td class="card-actions">
+                        <a asp-action="Details" asp-route-id="@project.projectID" class="btn btn-info">Details</a>
+                        <a asp-action="Edit" asp-route-id="@project.projectID" class="btn btn-secondary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@project.projectID" class="btn btn-danger">Delete</a>
+                        <a asp-controller="Task" asp-action="Index"  asp-route-projectID="@project.projectID" class="btn btn-warning" id="viewTask">View Tasks</a>
+
+                    </td>
+                </tr>
+            }
+            
+        </tbody>
+    </table> 
+
+
+} else
+{
+    if (searchPerformed)
+    {
+        <p> No projects with the name or description "@searchString" were found</p>
+    }
+    else
+    {
+        <p>No projects available</p>
+    }
+    
+}

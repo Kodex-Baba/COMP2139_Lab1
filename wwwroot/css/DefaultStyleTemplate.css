@@ -1,0 +1,41 @@
+﻿
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.card:hover {
+        transform: scale(1.05);
+        background-color: #e0e0e0;
+    }
+
+.card-content {
+    padding: 20px;
+}
+
+.card-actions {
+    padding: 10px;
+    background-color: #f5f5f5;
+    text-align: right;
+    word-spacing: 5px;
+}
+
+#viewTask {
+    margin-top: 1em;
+}
+
+    .card-actions a {
+        margin-left: 5px;
+    }
+
+#createButton {
+    margin-bottom: 2.5em;
+}
+
