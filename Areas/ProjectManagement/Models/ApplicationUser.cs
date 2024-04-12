@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿ using Microsoft.AspNetCore.Identity;
 
 namespace COMP2139_Lab1.Areas.ProjectManagement.Models
 {
@@ -8,7 +8,8 @@ namespace COMP2139_Lab1.Areas.ProjectManagement.Models
 
         public string LastName { get; set; }
 
-        public int usernameChangeLimit { get; set; } = 10;
+        public int UsernameChangeLimit { get; set; } = 10;
+
         public byte[]? ProfilePicture { get; set; }
     }
 }

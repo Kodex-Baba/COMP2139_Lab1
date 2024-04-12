@@ -32,7 +32,10 @@ namespace COMP2139_Lab1.Data
                 entity.ToTable(name: "Role");
             });
 
-            builder.Entity<IdentityUserRole<string>>  (entity => { entity.ToTable(name: "UserRoles"); });
+            builder.Entity<IdentityUserRole<string>>  (entity =>
+            { 
+                entity.ToTable(name: "UserRoles"); 
+            });
 
             builder.Entity<IdentityUserClaim<string>>(entity =>
             {

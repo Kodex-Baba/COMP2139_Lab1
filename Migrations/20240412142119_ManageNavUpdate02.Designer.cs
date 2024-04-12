@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace COMP2139_Lab1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240323052412_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240412142119_ManageNavUpdate02")]
+    partial class ManageNavUpdate02
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,7 +89,7 @@ namespace COMP2139_Lab1.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("usernameChangeLimit")
+                    b.Property<int>("UsernameChangeLimit")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
